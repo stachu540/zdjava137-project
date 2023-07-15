@@ -9,8 +9,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.net.URI;
 
+
+/**
+ * Base controller of all endpoints
+ */
 @Controller
-public class MainController {
+public class BaseController {
     @GetMapping("/product/{id}")
     public String product(@PathVariable long id, Model model) {
         return "product";
@@ -51,6 +55,7 @@ public class MainController {
     public String search(@RequestParam String query, @RequestParam(required = false, defaultValue = "20") int limit, @RequestParam(required = false, defaultValue = "1") int page) {
         return "search";
     }
+
     @GetMapping
     public String index() {
         return "index";
@@ -62,26 +67,32 @@ public class MainController {
     public String admin(Model model, @RequestParam(required = false, defaultValue = "20") int limit, @RequestParam(required = false, defaultValue = "1") int page) {
         return "admin/index";
     }
+
     @GetMapping("/admin/users/{id}")
     public String adminUser(@PathVariable long id, Model model) {
         return "admin/index";
     }
+
     @GetMapping("/admin/users")
     public String adminUsers(Model model, @RequestParam(required = false, defaultValue = "20") int limit, @RequestParam(required = false, defaultValue = "1") int page) {
         return "admin/index";
     }
+
     @GetMapping("/admin/products")
     public String adminProducts(Model model, @RequestParam(required = false, defaultValue = "20") int limit, @RequestParam(required = false, defaultValue = "1") int page) {
         return "admin/index";
     }
+
     @GetMapping("/admin/products/{id}")
     public String adminProduct(@PathVariable long id, Model model) {
         return "admin/index";
     }
+
     @GetMapping("/admin/categories/{id}")
     public String adminCategories(Model model, @RequestParam(required = false, defaultValue = "20") int limit, @RequestParam(required = false, defaultValue = "1") int page) {
         return "admin/index";
     }
+
     @GetMapping("/admin/categories/{id}")
     public String adminCategory(@PathVariable long id, Model model) {
         return "admin/index";
