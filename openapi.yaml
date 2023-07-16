@@ -51,48 +51,36 @@ paths:
               schema:
                 $ref: '#/components/schemas/User'
   /users/{id}:
-    summary: User
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
     get:
       summary: Get User
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
       tags:
         - Users
       responses:
         200:
           $ref: "#/components/responses/User"
     patch:
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
+      summary: Update User
       tags:
         - Users
-      summary: Update User
       responses:
         200:
           $ref: "#/components/responses/User"
     delete:
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
+      summary: Delete User
       tags:
         - Users
-      summary: Delete User
       responses:
         204:
           $ref: "#/components/responses/NoContent"
   /categories:
     get:
+      summary: Fetch root categories
       parameters:
         - $ref: '#/components/parameters/Limit'
         - $ref: '#/components/parameters/Page'
@@ -102,6 +90,7 @@ paths:
         200:
           $ref: "#/components/responses/Categories"
     post:
+      summary: Create new category
       tags:
         - Products
       requestBody:
@@ -117,18 +106,21 @@ paths:
         schema:
           type: integer
     get:
+      summary: Get category details
       tags:
         - Products
       responses:
         200:
           $ref: "#/components/responses/Categories"
     patch:
+      summary: Update category
       tags:
         - Products
       responses:
         200:
           $ref: "#/components/responses/Category"
     delete:
+      summary: Delete category
       tags:
         - Products
       responses:
@@ -136,6 +128,7 @@ paths:
           $ref: "#/components/responses/NoContent"
   /categories/{id}/children:
     get:
+      summary: List all child categories
       tags:
         - Products
       parameters:
@@ -151,6 +144,7 @@ paths:
           $ref: "#/components/responses/Categories"
   /categories/{id}/products:
     get:
+      summary: List all products in specific category
       parameters:
         - name: id
           in: path
@@ -166,6 +160,7 @@ paths:
           $ref: "#/components/responses/Product"
   /products:
     get:
+      summary: List all products added by logged in user
       tags:
         - Products
       parameters:
@@ -175,6 +170,7 @@ paths:
         200:
           $ref: "#/components/responses/Products"
     post:
+      summary: Add product
       tags:
         - Products
       responses:
@@ -188,18 +184,21 @@ paths:
         schema:
           type: integer
     get:
+      summary: Get product details
       tags:
         - Products
       responses:
         200:
           $ref: "#/components/responses/Product"
     patch:
+      summary: Update product info
       tags:
         - Products
       responses:
         200:
           $ref: "#/components/responses/Product"
     delete:
+      summary: Remove product
       tags:
         - Products
       responses:
@@ -213,6 +212,7 @@ paths:
         schema:
           type: integer
     get:
+      summary: List all comments with average rate of all comments
       parameters:
         - $ref: '#/components/parameters/Limit'
         - $ref: '#/components/parameters/Page'
@@ -222,6 +222,7 @@ paths:
         200:
           $ref: "#/components/responses/Comments"
     post:
+      summary: Add comment by user
       tags:
         - Products
       requestBody:
@@ -244,12 +245,14 @@ paths:
           type: integer
           format: int64
     get:
+      summary: Get single comment
       tags:
         - Products
       responses:
         200:
           $ref: "#/components/responses/Comment"
     patch:
+      summary: Update/Moderate comment
       tags:
         - Products
       requestBody:
@@ -258,6 +261,7 @@ paths:
         201:
           $ref: "#/components/responses/Comment"
     delete:
+      summary: Delete comment
       tags:
         - Products
       responses:
@@ -265,6 +269,7 @@ paths:
           $ref: "#/components/responses/NoContent"
   /orders:
     get:
+      summary: List all past user orders
       tags:
         - Utilities
       parameters:
@@ -275,6 +280,7 @@ paths:
           $ref: "#/components/responses/Orders"
   /orders/{id}:
     get:
+      summary: Get specific order
       parameters:
         - name: id
           in: path
@@ -288,6 +294,7 @@ paths:
           $ref: "#/components/responses/Order"
   /orders/{id}/invoice:
     get:
+      summary: Download invoice if they exist
       parameters:
         - name: id
           in: path
@@ -300,9 +307,12 @@ paths:
         200:
           $ref: "#/components/responses/Invoice"
         404:
-          $ref: "#/components/responses/ErrorResult"
+          allOf:
+            - $ref: "#/components/responses/ErrorResult"
+            - description: Invoice not exist
   /payments/{id}:
     get:
+      summary: Getting payment details
       parameters:
         - name: id
           in: path
@@ -315,21 +325,25 @@ paths:
         200:
           $ref: "#/components/responses/Payment"
   /cart:
+    summary: Cart in current session
     get:
+      summary: Load cart in current session
       tags:
         - Utilities
       responses:
         200:
           $ref: "#/components/responses/Cart"
     patch:
+      summary: Update cart items in current session
       tags:
         - Utilities
       requestBody:
-        $ref: "#/components/requestBodies/AddToCart"
+        $ref: "#/components/requestBodies/CartSpec"
       responses:
         200:
           $ref: "#/components/responses/Cart"
     delete:
+      summary: Remove cart items in current session
       tags:
         - Utilities
       requestBody:
@@ -340,7 +354,7 @@ paths:
 components:
   responses:
     Token:
-      description: ""
+      description: "Session Token"
       content:
         application/json:
           schema:
@@ -352,7 +366,7 @@ components:
                 type: string
                 format: date-time
     Users:
-      description: ""
+      description: "List of users"
       content:
         application/json:
           schema:
@@ -360,13 +374,13 @@ components:
             items:
               $ref: '#/components/schemas/User'
     User:
-      description: ""
+      description: "Single user"
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/User'
     Categories:
-      description: ""
+      description: "List of categories"
       content:
         application/json:
           schema:
@@ -374,13 +388,13 @@ components:
             items:
               $ref: '#/components/schemas/Category'
     Category:
-      description: ""
+      description: "Single category"
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Category'
     Products:
-      description: ""
+      description: "List of products"
       content:
         application/json:
           schema:
@@ -388,13 +402,13 @@ components:
             items:
               $ref: '#/components/schemas/Product'
     Product:
-      description: ""
+      description: "Single product"
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Product'
     Comments:
-      description: ""
+      description: "List of comments"
       content:
         application/json:
           schema:
@@ -402,13 +416,13 @@ components:
             items:
               $ref: '#/components/schemas/Comment'
     Comment:
-      description: ""
+      description: "Single comment"
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Comment'
     Orders:
-      description: ""
+      description: "List of orders (by user)"
       content:
         application/json:
           schema:
@@ -416,27 +430,27 @@ components:
             items:
               $ref: '#/components/schemas/Order'
     Order:
-      description: ""
+      description: "Single order (accessed by user)"
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Order'
     Cart:
-      description: ""
+      description: "Single cart"
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Cart'
     Payment:
-      description: ""
+      description: "Single payment info"
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Payment'
     NoContent:
-      description: ""
+      description: "Empty result (204)"
     ErrorResult:
-      description: ""
+      description: "Any error"
       content:
         application/json:
           schema:
@@ -460,7 +474,7 @@ components:
             format: binary
   requestBodies:
     UserCreate:
-      description: ""
+      description: "Create user spec"
       required: true
       content:
         application/json:
@@ -476,7 +490,7 @@ components:
                 type: string
                 format: email
     UserUpdate:
-      description: ""
+      description: "Update user spec"
       required: true
       content:
         application/json:
@@ -499,7 +513,7 @@ components:
                   - ADMIN
                   - SUPER_ADMIN
     CategoryCreate:
-      description: ""
+      description: "Create category"
       required: true
       content:
         application/json:
@@ -518,7 +532,7 @@ components:
                 format: int64
                 nullable: true
     CategoryUpdate:
-      description: ""
+      description: "Update category"
       required: true
       content:
         application/json:
@@ -537,7 +551,7 @@ components:
                 format: int64
                 nullable: true
     ProductCreate:
-      description: ""
+      description: "Create product"
       required: true
       content:
         application/json:
@@ -564,7 +578,7 @@ components:
                 format: int32
                 minimum: 1
     ProductUpdate:
-      description: ""
+      description: "Update product"
       required: true
       content:
         application/json:
@@ -590,8 +604,8 @@ components:
                 type: integer
                 format: int32
                 minimum: 1
-    AddToCart:
-      description: ""
+    CartSpec:
+      description: "Specify cart parameters like quantity of product"
       required: true
       content:
         application/json:
@@ -609,7 +623,7 @@ components:
                   minimum: 1
                   default: 1
     RemoveFromCart:
-      description: ""
+      description: "Direclty removes Cart ID's"
       required: true
       content:
         application/json:
@@ -619,7 +633,7 @@ components:
               type: integer
               format: int64
     CommentAdd:
-      description: ""
+      description: "Add comment"
       required: true
       content:
         application/json:
@@ -646,7 +660,7 @@ components:
                     minimum: 1
                     maximum: 5
     CommentUpdate:
-      description: ""
+      description: "Update comment"
       required: true
       content:
         application/json:
@@ -664,6 +678,7 @@ components:
     Limit:
       in: query
       name: limit
+      description: "Limit"
       schema:
         format: int32
         type: integer
@@ -673,6 +688,7 @@ components:
     Page:
       in: query
       name: page
+      description: "Page"
       schema:
         format: int32
         type: integer
@@ -680,6 +696,7 @@ components:
         minimum: 1
   schemas:
     Category:
+      description: Category details
       type: object
       properties:
         id:
@@ -693,6 +710,7 @@ components:
           $ref: '#/components/schemas/Category'
     User:
       type: object
+      description: User details
       properties:
         id:
           type: integer
@@ -719,6 +737,7 @@ components:
             - SUPER_ADMIN
     Product:
       type: object
+      description: Product details
       properties:
         id:
           type: integer
@@ -748,6 +767,7 @@ components:
           default: null
     Comment:
       type: object
+      description: Comment details
       properties:
         id:
           type: integer
@@ -764,6 +784,7 @@ components:
           nullable: true
     Order:
       type: object
+      description: Order details
       properties:
         payment:
           $ref: '#/components/schemas/Payment'
@@ -781,17 +802,17 @@ components:
                 type: number
                 format: double
     Cart:
-      type: array
-      items:
-        type: object
-        properties:
-          product:
-            $ref: '#/components/schemas/Product'
-          quantity:
-            type: integer
-            format: int32
+      type: object
+      description: Cart information
+      properties:
+        product:
+          $ref: '#/components/schemas/Product'
+        quantity:
+          type: integer
+          format: int32
     Payment:
       type: object
+      description: Payment details
       properties:
         method:
           type: string
@@ -803,6 +824,7 @@ components:
           format: double
     Error:
       type: object
+      description: Example error
       properties:
         status:
           type: integer
