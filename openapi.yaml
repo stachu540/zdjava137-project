@@ -448,7 +448,9 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Cart'
+            type: array
+            items:
+              $ref: '#/components/schemas/CartItem'
     Payment:
       description: "Single payment info"
       content:
@@ -822,7 +824,7 @@ components:
               price_per_unit:
                 type: number
                 format: double
-    Cart:
+    CartItem:
       type: object
       description: Cart information
       properties:
