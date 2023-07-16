@@ -1,28 +1,36 @@
 package pro.sdacademy.zdjava137.group3.entity;
 
-import jakarta.persistence.*;
-import lombok.Data;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
-import java.time.Instant;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.Data;
 
 @Data
 @Entity
 public class Product {
+
     @Id
-    @GeneratedValue
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
-    @ManyToOne
-    private Category category;
+
+    //#TODO add Category:
+    //@ManyToOne
+    //    private Category category;
     private String description;
-    private double pricePerUnit;
-    private int units;
-    @ManyToOne
-    private User seller;
-    @CreationTimestamp
-    private Instant createdAt;
-    @UpdateTimestamp
-    private Instant updatedAt;
+    private double price;
+    private int quantity;
+
+//    #TODO add User:
+//    @ManyToOne
+//    private User seller;
+//    @CreationTimestamp
+//    private Instant createdAt;
+//    @UpdateTimestamp
+//    private Instant updatedAt;
+
+
+
 }
