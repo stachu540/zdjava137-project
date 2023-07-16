@@ -19,6 +19,7 @@ import {ProductCommentsModComponent} from "./component/product-comments-mod/prod
 import {ProductsModComponent} from "./component/products-mod/products-mod.component";
 import {RegisterFormComponent} from "./component/register-form/register-form.component";
 import {UsersModComponent} from "./component/users-mod/users-mod.component";
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import {UsersModComponent} from "./component/users-mod/users-mod.component";
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [],
