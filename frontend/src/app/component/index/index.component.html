@@ -1,1 +1,2 @@
-<p>index works!</p>
+<search-model *ngIf="query || query == '' || query == null" />
+<search *ngIfElse [query]="query" />

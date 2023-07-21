@@ -1,0 +1,15 @@
+.search-bar {
+  text-align: center;
+  margin: 4rem auto;
+  &.query {
+    margin: 1.5rem auto;
+
+    mat-form-field {
+      height: 48px;
+    }
+  }
+}
+
+mat-form-field {
+  width: 600px;
+}

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-new-product',
+  selector: 'settings-new-product',
   templateUrl: './new-product.component.html',
   styleUrls: ['./new-product.component.scss']
 })

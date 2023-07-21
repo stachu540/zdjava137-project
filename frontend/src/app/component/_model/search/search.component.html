@@ -1,0 +1,7 @@
+<search />
+<mat-grid-list [cols]="results.length" *ngIf="results.length >= 0">
+  <mat-grid-tile *ngFor="let result of results">
+    <mat-grid-tile-header>{{ result.name }}</mat-grid-tile-header>
+  </mat-grid-tile>
+</mat-grid-list>
+<div *ngIfElse>No results found</div>

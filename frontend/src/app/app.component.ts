@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
-import {IndexComponent} from "./component/index/index.component";
+import {Component, OnInit} from '@angular/core';
+import {ProductsService} from "./service/products.service";
+import {CategoriesService} from "./service/categories.service";
+import {Products} from "./service/model/product";
+import {Categories} from "./service/model/category";
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-root',
@@ -7,6 +11,7 @@ import {IndexComponent} from "./component/index/index.component";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Auction';
-    protected readonly IndexComponent = IndexComponent;
+
+  constructor(private cookies: CookieService) {
+  }
 }

@@ -10,3 +10,11 @@ export interface LoginForm {
   username: string
   password: string
 }
+
+export interface RegisterForm {
+  email: string
+  username: string
+  password: string
+}
+
+export type Sort = "asc" | "desc"

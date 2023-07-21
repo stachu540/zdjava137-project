@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-categories-mod',
+  selector: 'admin-categories',
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.scss']
 })

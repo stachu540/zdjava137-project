@@ -21,9 +21,7 @@ import {
 } from "./component/admin/product-comments/product-comments.component";
 import {UsersComponent as AdminUsers} from "./component/admin/users/users.component";
 import {CategoriesComponent as AdminCategories} from "./component/admin/categories/categories.component";
-import {
-  AddressSettingsComponent as UserAddress
-} from "./component/settings/address-settings/address-settings.component";
+import {AddressComponent as UserAddress} from "./component/settings/address/address.component";
 import {AccountCloseComponent as UserAccountClose} from "./component/settings/account-close/account-close.component";
 import {PaymentsComponent as UserPayments} from "./component/settings/payments/payments.component";
 import {ProductComponent} from "./component/product/product.component";
@@ -36,6 +34,28 @@ import {
 import {PaymentDetailsComponent} from "./component/payment-details/payment-details.component";
 import {OrderDetailsComponent} from "./component/settings/order-details/order-details.component";
 import {RegisterComponent} from "./component/register/register.component";
+import {TitleStrategy} from "@angular/router";
+import {AppTitlePrefix} from "./titile";
+import {CookieService} from "ngx-cookie-service";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NavigationComponent} from './component/_base/navigation/navigation.component';
+import {FooterComponent} from './component/_base/footer/footer.component';
+import {SearchModelComponent} from './component/_model/search-model/search-model.component';
+import {ProductTileComponent} from './component/_model/product-tile/product-tile.component';
+import {ProductRowComponent} from './component/_model/product-row/product-row.component';
+import {CartEntryComponent} from './component/_model/cart-entry/cart-entry.component';
+import {CheckoutComponent} from './component/_model/checkout/checkout.component';
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatButtonModule} from "@angular/material/button";
+import {MatInputModule} from "@angular/material/input";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatIconModule} from "@angular/material/icon";
+import {MatMenuModule} from "@angular/material/menu";
+import {MatDividerModule} from "@angular/material/divider";
+import {LogoutComponent} from './component/_base/logout/logout.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {SearchComponent} from "./component/_model/search/search.component";
+import {MatGridListModule} from "@angular/material/grid-list";
 
 
 @NgModule({
@@ -65,14 +85,39 @@ import {RegisterComponent} from "./component/register/register.component";
     UserProductComments,
     PaymentDetailsComponent,
     OrderDetailsComponent,
-    RegisterComponent
+    RegisterComponent,
+    NavigationComponent,
+    FooterComponent,
+    SearchModelComponent,
+    ProductTileComponent,
+    ProductRowComponent,
+    CartEntryComponent,
+    CheckoutComponent,
+    LogoutComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatInputModule,
+    FormsModule,
+    MatIconModule,
+    MatMenuModule,
+    MatDividerModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatGridListModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: TitleStrategy,
+      useClass: AppTitlePrefix
+    }, CookieService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
