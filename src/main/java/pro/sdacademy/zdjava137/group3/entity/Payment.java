@@ -14,7 +14,7 @@ public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    private PaymentMethod method; // TODO: Discussion required
+   // private PaymentMethod method; // TODO: Discussion required
     private double price;
     private double paid;
 }
