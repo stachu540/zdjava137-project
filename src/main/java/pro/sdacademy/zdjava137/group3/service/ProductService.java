@@ -37,9 +37,9 @@ public class ProductService {
     public Optional<Product> getProductById(long id) {
         return productRepository.findById(id);
     }
-    public List<Product> getProductsByCategory(String category) {
-        return productRepository.findByCategory(category);
-    }
+//    public List<Product> getProductsByCategory(String category) {
+//        return productRepository.findByCategory(category);
+//    }
 
     public Product create(ProductAddDTO dto) {
         Product product = new Product();
@@ -83,7 +83,6 @@ public class ProductService {
         if (!productRepository.existsById(productId)) {
             throw new NotFoundException("Product with id " + productId + " not found");
         }
-
         productRepository.deleteById(productId);
     }
 

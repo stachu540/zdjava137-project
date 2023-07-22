@@ -14,7 +14,7 @@ import java.net.URI;
  * Base controller of all endpoints
  */
 @Controller
-public class BaseController {
+public class MainController {
     @GetMapping("/product/{id}")
     public String product(@PathVariable long id, Model model) {
         return "product";
@@ -46,7 +46,7 @@ public class BaseController {
         return "login";
     }
 
-    @GetMapping("/login")
+    @GetMapping("/logout")
     public String logout() {
         return "logout";
     }
@@ -88,7 +88,7 @@ public class BaseController {
         return "admin/index";
     }
 
-    @GetMapping("/admin/categories/{id}")
+    @GetMapping("/admin/categories")
     public String adminCategories(Model model, @RequestParam(required = false, defaultValue = "20") int limit, @RequestParam(required = false, defaultValue = "1") int page) {
         return "admin/index";
     }

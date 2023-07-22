@@ -13,7 +13,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     //Metoda findAll() jest już dostarczana przez interfejs JpaRepository,
     // więc nie jest konieczne dodawanie tej metody do ProductRepository
 
-    List<Product> findByCategory(String category);
+//    List<Product> findByCategory(String category);
     Optional<Product> findById(Long productId);
     Product save(Product product);
     void deleteById(Long productId) throws ProductNotFoundException;

@@ -15,8 +15,8 @@ public class Product {
     private String name;
 
     //#TODO add Category:
-    //@ManyToOne
-    //    private Category category;
+//    @ManyToOne
+//        private Category category;
     private String description;
     private double price;
     private int quantity;

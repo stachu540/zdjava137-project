@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 @Embeddable
 public class ProductCart {
-    private Product2 product;
+//    private Product2 product;
     private int quantity;
     private double pricePerQuantity;
 }
