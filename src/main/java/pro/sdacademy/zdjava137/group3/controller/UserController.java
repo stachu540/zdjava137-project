@@ -39,7 +39,7 @@ public class UserController {
     @PutMapping("/api/user/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void update(@RequestBody final User user, @PathVariable final long id) throws Exception {
-        UserCrudService.update(id, user);
+        userCrudService.update(id, user);
     }
 
     @DeleteMapping("/api/user/{id}")

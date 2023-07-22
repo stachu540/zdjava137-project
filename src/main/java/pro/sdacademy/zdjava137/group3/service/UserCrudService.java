@@ -8,13 +8,13 @@ import pro.sdacademy.zdjava137.group3.repository.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
+
 
 @Transactional
 @Service
 @RequiredArgsConstructor
 public class UserCrudService {
-    private final UserRepository userRepository;
+    private  final UserRepository userRepository;
 
     public User findById(final long id) throws Exception {
         return userRepository.findById(id)
@@ -30,7 +30,7 @@ public class UserCrudService {
         return userRepository.save(user);
     }
 
-    public static void update(final long id, final User user) throws Exception {
+    public  void update(final long id, final User user) throws Exception {
         User existingFileData = userRepository.findById(id).orElseThrow(() -> new Exception("Cannot update non existing file data"));
         existingFileData.setEmail(user.getEmail());
         existingFileData.setUsername(user.getUsername());
