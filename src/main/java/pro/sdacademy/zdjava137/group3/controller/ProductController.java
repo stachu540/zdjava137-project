@@ -3,14 +3,20 @@ package pro.sdacademy.zdjava137.group3.controller;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 import pro.sdacademy.zdjava137.group3.entity.Product;
+import pro.sdacademy.zdjava137.group3.model.ProductAddDTO;
+import pro.sdacademy.zdjava137.group3.model.ProductUpdateDTO;
 import pro.sdacademy.zdjava137.group3.service.ProductService;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
+@RestController
+@RequestMapping("/products")
 public class ProductController {
 
     private final ProductService productService;
@@ -30,4 +36,20 @@ public class ProductController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+    @GetMapping("/category/{category}")
+    public List<Product> getProductsByCategory(@PathVariable String category) {
+        return productService.getProductsByCategory(category);
+    }
+
+    @PostMapping
+    public ResponseEntity<Product> create(@Validated @RequestBody ProductAddDTO dto) {
+        Product createdProduct = productService.create(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdProduct);
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<Product> updateProduct(@PathVariable long id, @RequestBody ProductUpdateDTO dto) {
+        Product updatedProduct = productService.update(id, dto);
+        return ResponseEntity.ok(updatedProduct);
+    }
+
 }
