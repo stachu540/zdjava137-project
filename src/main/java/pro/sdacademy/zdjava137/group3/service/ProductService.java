@@ -50,13 +50,7 @@ public class ProductService {
 
         return productRepository.save(product);
     }
-    //validator for create
-    //TODO validator for create.
-//    private void validateProductAddDTO(ProductAddDTO dto) {
-//        Set<ConstraintViolation<ProductAddDTO>> violations = validator.validate(dto);
-//        if (!violations.isEmpty()) {
-//            throw new ValidationException("ProductAddDTO validation failed", violations);
-//        }
+
 
 
     public Product update(long id, ProductUpdateDTO dto) {
