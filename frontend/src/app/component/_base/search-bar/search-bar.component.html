@@ -1,5 +1,5 @@
-<div class="search-bar container">
-  <form (ngSubmit)="search()">
+<div class="search-bar">
+  <form (ngSubmit)="execute()">
     <mat-form-field>
       <input matInput placeholder="Search" [(ngModel)]="query" [ngModelOptions]="{standalone: true}"/>
       <button mat-icon-button matSuffix type="submit">

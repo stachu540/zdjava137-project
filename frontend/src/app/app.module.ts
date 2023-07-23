@@ -9,7 +9,7 @@ import {IndexComponent} from "./component/index/index.component";
 import {CartComponent} from "./component/cart/cart.component";
 import {CategoryComponent} from "./component/category/category.component";
 import {LoginComponent} from "./component/login/login.component";
-import {OrderComponent} from "./component/order/order.component";
+import {CheckoutComponent} from "./component/checkout/checkout.component";
 import {ProductsComponent as UserProducts} from "./component/settings/products/products.component";
 import {OrdersComponent as UserOrders} from "./component/settings/orders/orders.component";
 import {AccountComponent as UserAccount} from "./component/settings/account/account.component";
@@ -22,7 +22,7 @@ import {
 import {UsersComponent as AdminUsers} from "./component/admin/users/users.component";
 import {CategoriesComponent as AdminCategories} from "./component/admin/categories/categories.component";
 import {AddressComponent as UserAddress} from "./component/settings/address/address.component";
-import {AccountCloseComponent as UserAccountClose} from "./component/settings/account-close/account-close.component";
+import {AccountCloseComponent as UserAccountClose} from "./component/_base/account-close/account-close.component";
 import {PaymentsComponent as UserPayments} from "./component/settings/payments/payments.component";
 import {ProductComponent} from "./component/product/product.component";
 import {SettingsComponent as AdminSettings} from "./component/admin/settings/settings.component";
@@ -40,11 +40,7 @@ import {CookieService} from "ngx-cookie-service";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NavigationComponent} from './component/_base/navigation/navigation.component';
 import {FooterComponent} from './component/_base/footer/footer.component';
-import {SearchModelComponent} from './component/_model/search-model/search-model.component';
-import {ProductTileComponent} from './component/_model/product-tile/product-tile.component';
-import {ProductRowComponent} from './component/_model/product-row/product-row.component';
 import {CartEntryComponent} from './component/_model/cart-entry/cart-entry.component';
-import {CheckoutComponent} from './component/_model/checkout/checkout.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
@@ -54,8 +50,20 @@ import {MatMenuModule} from "@angular/material/menu";
 import {MatDividerModule} from "@angular/material/divider";
 import {LogoutComponent} from './component/_base/logout/logout.component';
 import {MatDialogModule} from "@angular/material/dialog";
-import {SearchComponent} from "./component/_model/search/search.component";
 import {MatGridListModule} from "@angular/material/grid-list";
+import {SearchBarComponent} from './component/_base/search-bar/search-bar.component';
+import {SearchComponent} from "./component/search/search.component";
+import {CategoryBrowserComponent} from "./component/category-browser/category-browser.component";
+import {MatListModule} from "@angular/material/list";
+import {CategoryFilterComponent} from "./component/_model/category-filter/category-filter.component";
+import {CheckoutEntryComponent} from "./component/_model/checkout-entry/checkout-entry.component";
+import {ProductEntryComponent} from "./component/_model/product-entry/product-entry.component";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatBadgeModule} from "@angular/material/badge";
+import {MatTableModule} from "@angular/material/table";
+import {MatCardModule} from "@angular/material/card";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 
 @NgModule({
@@ -65,7 +73,7 @@ import {MatGridListModule} from "@angular/material/grid-list";
     CartComponent,
     CategoryComponent,
     LoginComponent,
-    OrderComponent,
+    CheckoutComponent,
     UserProducts,
     UserOrders,
     UserAccount,
@@ -88,13 +96,15 @@ import {MatGridListModule} from "@angular/material/grid-list";
     RegisterComponent,
     NavigationComponent,
     FooterComponent,
-    SearchModelComponent,
-    ProductTileComponent,
-    ProductRowComponent,
     CartEntryComponent,
     CheckoutComponent,
     LogoutComponent,
-    SearchComponent
+    SearchBarComponent,
+    SearchComponent,
+    CategoryBrowserComponent,
+    CategoryFilterComponent,
+    CheckoutEntryComponent,
+    ProductEntryComponent
   ],
   imports: [
     BrowserModule,
@@ -110,7 +120,14 @@ import {MatGridListModule} from "@angular/material/grid-list";
     MatDividerModule,
     MatDialogModule,
     ReactiveFormsModule,
-    MatGridListModule
+    MatGridListModule,
+    MatListModule,
+    MatProgressSpinnerModule,
+    MatPaginatorModule,
+    MatBadgeModule,
+    MatTableModule,
+    MatCardModule,
+    MatSnackBarModule
   ],
   providers: [
     {
@@ -121,5 +138,4 @@ import {MatGridListModule} from "@angular/material/grid-list";
   bootstrap: [AppComponent]
 })
 export class AppModule {
-
 }

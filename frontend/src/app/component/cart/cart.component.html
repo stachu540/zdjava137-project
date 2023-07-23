@@ -1,1 +1,36 @@
-<p>cart works!</p>
+<table mat-table [dataSource]="items">
+  <ng-container matColumnDef="image">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let item"><img [src]="item.product.images[0]"/></td>
+    <td mat-footer-cell *matFooterCellDef></td>
+  </ng-container>
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let item">{{item.product.name}}</td>
+    <td mat-footer-cell *matFooterCellDef></td>
+  </ng-container>
+  <ng-container matColumnDef="quantity">
+    <th mat-header-cell *matHeaderCellDef>Quantity</th>
+    <td mat-cell *matCellDef="let item">{{item.quantity}}</td>
+    <td mat-footer-cell *matFooterCellDef style="text-align: right">Total:</td>
+  </ng-container>
+  <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef>Price</th>
+    <td mat-cell *matCellDef="let item">
+      <strong>{{(item.quantity * item.product.price_per_unit) | currency}}</strong>
+      <p class="small">
+        {{item.product.price_per_unit | currency}} per unit
+      </p>
+    </td>
+    <td mat-footer-cell *matFooterCellDef>{{totalCost() | currency}}</td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="['image', 'name', 'quantity', 'price']"></tr>
+  <tr mat-row *matRowDef="let row; columns: ['image', 'name', 'quantity', 'price'];"></tr>
+  <tr mat-footer-row *matFooterRowDef="['image', 'name', 'quantity', 'price']"></tr>
+</table>
+<div class="btn">
+  <a mat-raised-button color="primary" routerLink="/checkout">Checkout</a>
+  <a mat-raised-button routerLink="/">Back to the shop</a>
+</div>
+
+

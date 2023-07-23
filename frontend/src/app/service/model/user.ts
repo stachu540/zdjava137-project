@@ -1,3 +1,5 @@
+import {Paginated} from "./misc";
+
 export interface User {
   id: number
   username: string
@@ -7,7 +9,7 @@ export interface User {
   permission: UserPermission
 }
 
-export type Users = User[]
+export type Users = Paginated<User>
 
 export interface UserCreate {
   username: string

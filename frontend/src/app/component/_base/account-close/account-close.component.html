@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Close Account</h1>
+<mat-dialog-content>
+  <p>For safety removal please provide password for your account</p>
+  <mat-form-field>
+    <input matInput placeholder="Password" type="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" />
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="close()">Close</button>
+</mat-dialog-actions>

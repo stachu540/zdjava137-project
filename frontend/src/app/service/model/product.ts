@@ -1,4 +1,5 @@
 import {User} from "./user";
+import {Paginated} from "./misc";
 
 export interface Product {
   id: number
@@ -11,7 +12,7 @@ export interface Product {
   images: string[] // from CDN
 }
 
-export type Products = Product[]
+export type Products = Paginated<Product>
 
 export interface ProductCreate {
   name: string

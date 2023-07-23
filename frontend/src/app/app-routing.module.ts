@@ -4,7 +4,7 @@ import {IndexComponent} from "./component/index/index.component";
 import {CartComponent} from "./component/cart/cart.component";
 import {CategoryComponent} from "./component/category/category.component";
 import {LoginComponent} from "./component/login/login.component";
-import {OrderComponent} from "./component/order/order.component";
+import {CheckoutComponent} from "./component/checkout/checkout.component";
 import {ProductsComponent as UserProducts} from "./component/settings/products/products.component";
 import {OrdersComponent as UserOrders} from "./component/settings/orders/orders.component";
 import {AccountComponent as UserAccount} from "./component/settings/account/account.component";
@@ -17,7 +17,7 @@ import {
 import {UsersComponent as AdminUsers} from "./component/admin/users/users.component";
 import {CategoriesComponent as AdminCategories} from "./component/admin/categories/categories.component";
 import {AddressComponent as UserAddress} from "./component/settings/address/address.component";
-import {AccountCloseComponent as UserAccountClose} from "./component/settings/account-close/account-close.component";
+import {AccountCloseComponent as UserAccountClose} from "./component/_base/account-close/account-close.component";
 import {PaymentsComponent as UserPayments} from "./component/settings/payments/payments.component";
 import {ProductComponent} from "./component/product/product.component";
 import {SettingsComponent as AdminSettings} from "./component/admin/settings/settings.component";
@@ -26,12 +26,17 @@ import {ProductCommentsComponent} from "./component/settings/product-comments/pr
 import {PaymentDetailsComponent} from "./component/payment-details/payment-details.component";
 import {RegisterComponent} from "./component/register/register.component";
 import {CategorySingletonTitle, CommentsOfProductTitle, NewProductTitle, ProductSingletonTitle} from "./titile";
-import {SearchComponent} from "./component/_model/search/search.component";
+import {SearchComponent} from "./component/search/search.component";
+import {CategoryBrowserComponent} from "./component/category-browser/category-browser.component";
 
 const routes: Routes = [
   {
     path: "",
     component: IndexComponent
+  },
+  {
+    path: "search",
+    component: SearchComponent
   },
   {
     path: "cart",
@@ -41,14 +46,13 @@ const routes: Routes = [
   {
     title: "Categories",
     path: "category",
+    component: CategoryBrowserComponent,
+  },
+  {
+    title: CategorySingletonTitle,
+    pathMatch: "full",
+    path: "category/:id",
     component: CategoryComponent,
-    children: [
-      {
-        title: CategorySingletonTitle,
-        path: ":id",
-        component: CategoryComponent,
-      }
-    ]
   },
   {
     path: "payment/:id",
@@ -56,9 +60,9 @@ const routes: Routes = [
     component: PaymentDetailsComponent
   },
   {
-    path: "order",
+    path: "checkout",
     title: "Order Details",
-    component: OrderComponent
+    component: CheckoutComponent
   },
   {
     path: "product/:id",
@@ -81,16 +85,14 @@ const routes: Routes = [
     redirectTo: "/account/settings",
   },
   {
-    path: "account/settings",
+    path: "",
     title: "Account Settings",
     component: UserAccount,
-    children: [
-      {
-        path: "address",
-        title: "Account Settings - Address",
-        component: UserAddress,
-      }
-    ]
+  },
+  {
+    path: "account/settings/address",
+    title: "Account Settings - Address",
+    component: UserAddress,
   },
   {
     path: "account/close",
@@ -111,18 +113,16 @@ const routes: Routes = [
     path: "account/products",
     title: "Your Products",
     component: UserProducts,
-    children: [
-      {
-        path: "new",
-        title: NewProductTitle,
-        component: UserCreateProduct
-      },
-      {
-        path: ":id/comments",
-        title: CommentsOfProductTitle,
-        component: ProductCommentsComponent
-      }
-    ]
+  },
+  {
+    path: "account/products/new",
+    title: NewProductTitle,
+    component: UserCreateProduct
+  },
+  {
+    path: "account/products/:id/comments",
+    title: CommentsOfProductTitle,
+    component: ProductCommentsComponent
   },
   {
     path: "admin",
@@ -158,13 +158,11 @@ const routes: Routes = [
     path: "admin/products",
     title: "Admin - Products",
     component: AdminProducts,
-    children: [
-      {
-        path: ":id/comments",
-        title: CommentsOfProductTitle,
-        component: AdminProductComments
-      }
-    ]
+  },
+  {
+    path: "admin/products/:id/comments",
+    title: CommentsOfProductTitle,
+    component: AdminProductComments
   }
 ];
 

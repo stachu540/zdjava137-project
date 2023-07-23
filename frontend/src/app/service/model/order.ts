@@ -16,7 +16,7 @@ export type OrderItems = OrderItem[]
 export interface Payment {
   id: string
   status: PaymentStatus
-  method: string
+  method: PaymentMethod
   price: number
   reason: string | undefined // if error
 }
@@ -24,3 +24,19 @@ export interface Payment {
 export type Payments = Payment[]
 
 export type PaymentStatus = "CREATED" | "IN_PROGRESS" | "ERROR" | "COMPLETED"
+
+export interface PaymentMethod {
+  id: string
+  name: string
+  display_name: string
+}
+
+export type PaymentMethods = PaymentMethod[]
+
+export interface Pay {
+  method_id: string
+  items: [{
+    item_id: number,
+    quantity: number
+  }]
+}

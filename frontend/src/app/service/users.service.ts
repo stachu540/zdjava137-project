@@ -6,7 +6,7 @@ import {Observable} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
-export class UsersModService {
+export class UserService {
   // TODO: Authorization header
   constructor(private http: HttpClient) {
   }

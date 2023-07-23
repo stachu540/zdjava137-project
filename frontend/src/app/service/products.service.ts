@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Product, ProductCreate, Products, ProductUpdate} from "./model/product";
 import {Sort} from "./model/login";
+import {Paginated} from "./model/misc";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,6 @@ import {Sort} from "./model/login";
 export class ProductsService {
   constructor(private http: HttpClient) {
   }
-
   public list(limit: number = 20, page: number = 1, sort: Sort = "asc"): Observable<Products> {
     return this.http.get<Products>("/api/product", {
       params: {limit, page, sort}

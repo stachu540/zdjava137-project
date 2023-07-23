@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {Categories, Category, CategoryCreate, CategoryUpdate} from "./model/category";
+import {Products} from "./model/product";
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +12,17 @@ export class CategoriesService {
   constructor(private http: HttpClient) {
   }
 
-  public list(limit: number = 20, page: number = 1, sort: "asc" | "desc"): Observable<Categories> {
-    return this.http.get<Categories>("/api/categories", {
-      params: {limit, page, sort}
+  public list(): Observable<Categories> {
+    return this.http.get<Categories>("/api/categories")
+  }
+
+  public listChildren(id: number): Observable<Categories> {
+    return this.http.get<Categories>(`/api/categories/${id}/children`)
+  }
+
+  public fetch(id: number, page: number = 1, limit: number = 20): Observable<Products> {
+    return this.http.get<Products>(`/api/categories/${id}/products`, {
+      params: { page, limit }
     })
   }
 
