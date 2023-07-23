@@ -3,6 +3,10 @@ package pro.sdacademy.zdjava137.group3.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.Instant;
 
 @Data
 @Entity
@@ -10,8 +14,8 @@ import lombok.Data;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue
+    private long id;
     private String name;
 
     @ManyToOne
@@ -21,12 +25,12 @@ public class Product {
     private int quantity;
 
 //    #TODO add User:
-//    @ManyToOne
-//    private User seller;
-//    @CreationTimestamp
-//    private Instant createdAt;
-//    @UpdateTimestamp
-//    private Instant updatedAt;
+    @ManyToOne
+    private User seller;
+    @CreationTimestamp
+    private Instant createdAt;
+    @UpdateTimestamp
+    private Instant updatedAt;
 
 
 

@@ -9,18 +9,22 @@ import pro.sdacademy.zdjava137.group3.entity.Product;
 import pro.sdacademy.zdjava137.group3.exceptions.NotFoundException;
 import pro.sdacademy.zdjava137.group3.model.ProductAddDTO;
 import pro.sdacademy.zdjava137.group3.model.ProductUpdateDTO;
+import pro.sdacademy.zdjava137.group3.repo.CategoryRepository;
 import pro.sdacademy.zdjava137.group3.repo.ProductRepository;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class ProductService {
 
     private final ProductRepository productRepository;
+    private final CategoryRepository categoryRepository;
 
-    public ProductService(ProductRepository productRepository) {
+    public ProductService(ProductRepository productRepository, CategoryRepository categoryRepository) {
         this.productRepository = productRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     public Collection<Product> getProducts(Pageable pageable) {
@@ -77,8 +81,23 @@ public class ProductService {
         productRepository.deleteById(productId);
     }
 
-    public Collection<Product> getProductsByCategory(long categoryId) {
-        List<Product> products = productRepository.findByCat
+    public List<Product> getProductsByCategory(long categoryId) {
+        // Pobierz wszystkie produkty związane z daną kategorią
+        List<Product> products = productRepository.findByCategory_Id(categoryId);
+
+        // Rekurencyjnie pobierz produkty z podkategorii
+        getProductsFromSubcategories(categoryId, products);
+
+        return products;
+    }
+
+    private void getProductsFromSubcategories(long categoryId, List<Product> products) {
+        List<Category> subcategories = categoryRepository.findByParent_Id(categoryId);
+        for (Category subcategory : subcategories) {
+            List<Product> subcategoryProducts = productRepository.findByCategory_Id(subcategory.getId());
+            products.addAll(subcategoryProducts);
+            getProductsFromSubcategories(subcategory.getId(), products);
+        }
     }
 
 }
