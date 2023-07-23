@@ -1,11 +1,8 @@
 package pro.sdacademy.zdjava137.group3.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
 import pro.sdacademy.zdjava137.group3.entity.Category;
 
 @Data

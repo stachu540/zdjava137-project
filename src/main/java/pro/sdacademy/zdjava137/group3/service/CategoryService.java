@@ -3,17 +3,13 @@ package pro.sdacademy.zdjava137.group3.service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import pro.sdacademy.zdjava137.group3.dao.Categories;
 import pro.sdacademy.zdjava137.group3.entity.Category;
-import pro.sdacademy.zdjava137.group3.entity.Product;
 import pro.sdacademy.zdjava137.group3.exceptions.NotFoundException;
 import pro.sdacademy.zdjava137.group3.model.CategoryAddDTO;
 import pro.sdacademy.zdjava137.group3.model.CategoryUpdateDTO;
 import pro.sdacademy.zdjava137.group3.repo.CategoryRepository;
 
-
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 
 @Service

@@ -1,25 +1,18 @@
 package pro.sdacademy.zdjava137.group3.service;
 
 
-import jakarta.validation.ConstraintViolation;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import pro.sdacademy.zdjava137.group3.entity.Category;
 import pro.sdacademy.zdjava137.group3.entity.Product;
 import pro.sdacademy.zdjava137.group3.exceptions.NotFoundException;
 import pro.sdacademy.zdjava137.group3.model.ProductAddDTO;
-import pro.sdacademy.zdjava137.group3.repo.ProductRepository;
 import pro.sdacademy.zdjava137.group3.model.ProductUpdateDTO;
+import pro.sdacademy.zdjava137.group3.repo.ProductRepository;
 
-
-import javax.validation.ValidationException;
-import javax.validation.Validator;
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
-import java.util.Set;
-import java.util.concurrent.locks.StampedLock;
 
 @Service
 public class ProductService {
@@ -37,9 +30,7 @@ public class ProductService {
     public Optional<Product> getProductById(long id) {
         return productRepository.findById(id);
     }
-//    public List<Product> getProductsByCategory(String category) {
-//        return productRepository.findByCategory(category);
-//    }
+
 
     public Product create(ProductAddDTO dto) {
         Product product = new Product();
@@ -84,6 +75,10 @@ public class ProductService {
             throw new NotFoundException("Product with id " + productId + " not found");
         }
         productRepository.deleteById(productId);
+    }
+
+    public Collection<Product> getProductsByCategory(long categoryId) {
+        List<Product> products = productRepository.findByCat
     }
 
 }
