@@ -1,4 +1,4 @@
-package pro.sdacademy.zdjava137.group3.repo;
+package pro.sdacademy.zdjava137.group3.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import pro.sdacademy.zdjava137.group3.entity.Category;
@@ -8,7 +8,7 @@ import pro.sdacademy.zdjava137.group3.exceptions.NotFoundException;
 import java.util.List;
 import java.util.Optional;
 
-public interface ProductRepository extends JpaRepository<Product, Long> {
+public interface Products extends JpaRepository<Product, Long> {
 
     List<Product> findByCategory(Category category);
 
@@ -19,6 +19,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     void deleteById(Long productId) throws NotFoundException;
 
     List<Product> findByCategory_Id(long categoryId);
+
 
 
 }

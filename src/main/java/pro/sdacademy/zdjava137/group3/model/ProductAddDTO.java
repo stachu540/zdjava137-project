@@ -10,14 +10,10 @@ public class ProductAddDTO {
 
         @NotBlank(message = "Name is required")
         private String name;
-
         @NotBlank(message = "Description is required")
         private String description;
-
-
         @Positive
         private double price;
-
         @PositiveOrZero
         private int quantity;
 }

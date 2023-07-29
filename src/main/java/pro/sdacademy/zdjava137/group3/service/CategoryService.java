@@ -7,7 +7,7 @@ import pro.sdacademy.zdjava137.group3.entity.Category;
 import pro.sdacademy.zdjava137.group3.exceptions.NotFoundException;
 import pro.sdacademy.zdjava137.group3.model.CategoryAddDTO;
 import pro.sdacademy.zdjava137.group3.model.CategoryUpdateDTO;
-import pro.sdacademy.zdjava137.group3.repo.CategoryRepository;
+import pro.sdacademy.zdjava137.group3.dao.Categories;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -15,20 +15,20 @@ import java.util.Optional;
 @Service
 public class CategoryService {
 
-    private final CategoryRepository categoryRepository;
+    private final Categories categories;
 
 
-    public CategoryService(CategoryRepository categoryRepository) {
-        this.categoryRepository = categoryRepository;
+    public CategoryService(Categories categories) {
+        this.categories = categories;
     }
 
     public Collection<Category> getCategories(Pageable pageable) {
-        Page<Category> categoryPage = categoryRepository.findAll(pageable);
+        Page<Category> categoryPage = categories.findAll(pageable);
         return categoryPage.getContent();
     }
 
     public Optional<Category> getCategoryById(long id) {
-        return categoryRepository.findById(id);
+        return categories.findById(id);
     }
 
     public Category createCategory(CategoryAddDTO dto) {
@@ -36,7 +36,7 @@ public class CategoryService {
         category.setName(dto.getName());
         category.setDescription(dto.getDescription());
         category.setParent(dto.getParent());
-        return categoryRepository.save(category);
+        return categories.save(category);
     }
 
     public Category update(long id, CategoryUpdateDTO dto) {
@@ -53,22 +53,20 @@ public class CategoryService {
             category.setParent(dto.getParent());
         }
 
-        return categoryRepository.save(category);
+        return categories.save(category);
     }
 
     private Category fetchCategoryById(long id) {
-        return categoryRepository.findById(id)
+        return categories.findById(id)
                 .orElseThrow(() -> new NotFoundException("Product with id " + id + " not found"));
     }
 
-    public Category saveCategory(Category category) {
-        return categoryRepository.save(category);
-    }
+
 
     public void deleteCategory(long categoryId) {
-        if (!categoryRepository.existsById(categoryId)) {
+        if (!categories.existsById(categoryId)) {
             throw new NotFoundException("Category with id " + categoryId + " not found");
         }
-        categoryRepository.deleteById(categoryId);
+        categories.deleteById(categoryId);
     }
 }
