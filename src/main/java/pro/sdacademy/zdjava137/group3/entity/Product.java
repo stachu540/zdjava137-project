@@ -7,6 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.Instant;
+import java.util.List;
 
 @Data
 @Entity
@@ -24,13 +25,13 @@ public class Product {
     private double price;
     private int quantity;
 
-//    #TODO add User:
     @ManyToOne
     private User seller;
     @CreationTimestamp
     private Instant createdAt;
     @UpdateTimestamp
     private Instant updatedAt;
+
 
 
 

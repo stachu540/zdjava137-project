@@ -26,4 +26,6 @@ public class User {
     private Instant updatedAt;
     @OneToMany
     private List<UserAddress> addresses;
+
+
 }
