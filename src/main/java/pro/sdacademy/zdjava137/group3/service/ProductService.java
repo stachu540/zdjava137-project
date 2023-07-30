@@ -82,10 +82,7 @@ public class ProductService {
     }
 
     public List<Product> getProductsByCategory(long categoryId) {
-        // Pobierz wszystkie produkty związane z daną kategorią
         List<Product> products = this.products.findByCategory_Id(categoryId);
-
-        // Rekurencyjnie pobierz produkty z podkategorii
         getProductsFromSubcategories(categoryId, products);
 
         return products;

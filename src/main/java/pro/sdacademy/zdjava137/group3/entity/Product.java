@@ -32,7 +32,7 @@ public class Product {
     @UpdateTimestamp
     private Instant updatedAt;
 
-
+    private String comment;
 
 
 }
