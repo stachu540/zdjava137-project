@@ -1,4 +1,3 @@
-
 package pro.sdacademy.zdjava137.group3.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,6 +8,7 @@ import java.util.Optional;
 public interface Users extends JpaRepository<User, Long> {
     /**
      * Getting existing user by username
+     *
      * @param username User Name
      * @return Existing user or empty optional
      */

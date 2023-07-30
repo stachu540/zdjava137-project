@@ -5,16 +5,16 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-
 import java.time.Instant;
 import java.util.List;
 
 @Data
-@Entity(name = "user")
+@Entity
+@Table(name = "Users")
 public class User {
     @Id
     @GeneratedValue
-    private Long id;
+    private long id;
     private String email;
     private String username;
     private String password;
@@ -24,6 +24,8 @@ public class User {
     private Instant createdAt;
     @UpdateTimestamp
     private Instant updatedAt;
-    @ElementCollection
+    @OneToMany
     private List<UserAddress> addresses;
+
+
 }
