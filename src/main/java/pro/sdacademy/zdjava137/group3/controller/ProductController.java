@@ -27,11 +27,6 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("/product/{id}")
-    public String product(@PathVariable long id, Model model) {
-        return "product";
-    }
-
     @GetMapping
     public Collection<Product> getProducts(@PageableDefault(size = 10, sort = "id") Pageable pageable) {
         return productService.getProducts(pageable);
@@ -43,11 +38,6 @@ public class ProductController {
         return product
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
-    }
-
-    @GetMapping("/category/{category}")
-    public List<Product> getProductsByCategory(@PathVariable long categoryId) {
-        return productService.getProductsByCategory(categoryId);
     }
 
     @PostMapping

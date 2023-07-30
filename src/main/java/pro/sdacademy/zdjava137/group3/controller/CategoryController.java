@@ -31,12 +31,6 @@ public class CategoryController {
         return "categories";
     }
 
-    @GetMapping("/category/{id}")
-    public String category(@PathVariable long id, Model model) {
-        return "category";
-    }
-
-
     @GetMapping
     public Collection<Category> getCategories(@PageableDefault(size = 10, sort = "id") Pageable pageable) {
         return categoryService.getCategories(pageable);
@@ -49,7 +43,6 @@ public class CategoryController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
-
 
     @PostMapping
     public ResponseEntity<Category> createCategory(@RequestBody CategoryAddDTO dto) {
@@ -72,6 +65,4 @@ public class CategoryController {
             return ResponseEntity.notFound().build();
         }
     }
-
-
 }
