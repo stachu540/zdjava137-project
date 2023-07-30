@@ -1,0 +1,34 @@
+<mat-toolbar color="primary" *ngIf="router.url.indexOf('admin') == -1">
+  <a mat-button routerLink="/"><strong>Auction</strong></a>
+  <a mat-button routerLink="/category">Browse</a>
+  <div class="spacer"></div>
+  <a mat-icon-button routerLink="/cart">
+    <mat-icon class="material-icons-outlined" [matBadge]="items()" [matBadgeHidden]="cart.length == 0" matBadgeColor="warn" matBadgePosition="below after">shopping_cart</mat-icon>
+  </a>
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Your account">
+    <mat-icon class="material-icons-outlined">account_circle</mat-icon>
+  </button>
+</mat-toolbar>
+<mat-toolbar color="primary" *ngIf="router.url.indexOf('admin') > -1">
+  <strong>Auction</strong>
+  <a mat-button routerLink="/admin/dashboard">Dashboard</a>
+  <a mat-button routerLink="/admin/users">Users</a>
+  <a mat-button routerLink="/admin/categories">Categories</a>
+  <a mat-button routerLink="/admin/payments">Payments</a>
+  <a mat-button routerLink="/admin/products">Products</a>
+  <a mat-button routerLink="/admin/settings">Settings</a>
+  <div class="spacer"></div>
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Your account">
+    <mat-icon class="material-icons-outlined">account_circle</mat-icon>
+  </button>
+</mat-toolbar>
+<mat-menu #menu="matMenu" backdropClass="primary">
+  <a mat-menu-item routerLink="/account/settings"><mat-icon>settings</mat-icon> Settings</a>
+  <a mat-menu-item routerLink="/account/orders"><mat-icon>sell</mat-icon> Your Orders</a>
+  <a mat-menu-item routerLink="/account/payments"><mat-icon>payments</mat-icon> Your Payments</a>
+  <a mat-menu-item routerLink="/account/products"><mat-icon>inventory</mat-icon> Your Products</a>
+  <mat-divider />
+  <a mat-menu-item routerLink="/admin"><mat-icon>security</mat-icon> Admin Panel</a>
+  <mat-divider />
+  <a mat-menu-item (click)="logout()"><mat-icon>logout</mat-icon> Logout</a>
+</mat-menu>

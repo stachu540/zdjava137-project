@@ -1,0 +1,16 @@
+.login {
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+  min-width: 150px;
+  margin: 4rem auto;
+  mat-form-field {
+    width: 100%;
+    max-width: 500px;
+    min-width: 150px;
+  }
+  .btn *[mat-raised-button] {
+    margin: 24px;
+    width: 150px;
+  }
+}

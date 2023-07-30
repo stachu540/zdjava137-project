@@ -1,0 +1,6 @@
+<div></div>
+<div>
+  <mat-spinner *ngIf="loading" />
+  <div *ngIf="!loading"></div>
+  <mat-paginator (page)="update($event)" *ngIf="!loading" [length]="products.entries" [pageSize]="limit" [pageSizeOptions]="limits"/>
+</div>

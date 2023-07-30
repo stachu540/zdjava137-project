@@ -1,0 +1,20 @@
+<div class="login">
+  <form (ngSubmit)="login()">
+    <mat-form-field appearance="outline">
+      <mat-label>Username</mat-label>
+      <input matInput [(ngModel)]="username" [ngModelOptions]="{standalone: true}"/>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput [(ngModel)]="password" [ngModelOptions]="{standalone: true}" type="password"/>
+    </mat-form-field>
+    <div class="btn">
+      <button mat-raised-button color="primary" type="submit">
+        <mat-icon>login</mat-icon>&nbsp;Login
+      </button>
+      <button mat-raised-button routerLink="/register" type="button">
+        <mat-icon>person_add</mat-icon>&nbsp;Register
+      </button>
+    </div>
+  </form>
+</div>
