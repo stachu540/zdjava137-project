@@ -1,12 +1,11 @@
 package pro.sdacademy.zdjava137.group3.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 @Entity
@@ -18,6 +17,8 @@ public class Category {
     @Size(min = 3)
     private String name;
     private String description;
-    @OneToOne
+    @ManyToOne
     private Category parent;
+    @OneToMany(mappedBy = "parent")
+    private List<Category> children;
 }

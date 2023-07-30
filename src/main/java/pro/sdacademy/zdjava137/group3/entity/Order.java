@@ -1,6 +1,5 @@
 package pro.sdacademy.zdjava137.group3.entity;
 
-import jakarta.annotation.Generated;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -8,19 +7,19 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.Instant;
 import java.util.List;
-import java.util.UUID;
 
 @Data
 @Entity
+@Table(name = "orders")
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     @ElementCollection
     private List<ProductCart> products;
     @ManyToOne
     private User buyer;
-    @Embedded
+    @OneToOne
     private UserAddress address;
     @Nullable
     private Delivery delivery;

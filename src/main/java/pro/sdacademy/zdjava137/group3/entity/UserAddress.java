@@ -1,16 +1,17 @@
 package pro.sdacademy.zdjava137.group3.entity;
 
 import jakarta.annotation.Nullable;
-import jakarta.persistence.Embeddable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
 import lombok.Data;
 
+import java.util.UUID;
+
 @Data
-@Embeddable
+@Entity
 public class UserAddress {
     @NotEmpty
     private String address;
@@ -24,4 +25,8 @@ public class UserAddress {
     private String city;
     @NotEmpty
     private String country;
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
 }
