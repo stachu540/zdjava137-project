@@ -10,6 +10,7 @@ import java.util.List;
 
 @Data
 @Entity
+@Table(name = "Users")
 public class User {
     @Id
     @GeneratedValue
@@ -23,6 +24,8 @@ public class User {
     private Instant createdAt;
     @UpdateTimestamp
     private Instant updatedAt;
-    @ElementCollection
+    @OneToMany
     private List<UserAddress> addresses;
+
+
 }
