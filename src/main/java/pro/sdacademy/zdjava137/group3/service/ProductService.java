@@ -4,13 +4,13 @@ package pro.sdacademy.zdjava137.group3.service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import pro.sdacademy.zdjava137.group3.dao.Categories;
+import pro.sdacademy.zdjava137.group3.dao.Products;
 import pro.sdacademy.zdjava137.group3.entity.Category;
 import pro.sdacademy.zdjava137.group3.entity.Product;
 import pro.sdacademy.zdjava137.group3.exceptions.NotFoundException;
 import pro.sdacademy.zdjava137.group3.model.ProductAddDTO;
 import pro.sdacademy.zdjava137.group3.model.ProductUpdateDTO;
-import pro.sdacademy.zdjava137.group3.dao.Categories;
-import pro.sdacademy.zdjava137.group3.dao.Products;
 
 import java.util.Collection;
 import java.util.List;
@@ -31,6 +31,7 @@ public class ProductService {
         Page<Product> productPage = products.findAll(pageable);
         return productPage.getContent();
     }
+
     public Optional<Product> getProductById(long id) {
         return products.findById(id);
     }
@@ -45,7 +46,6 @@ public class ProductService {
 
         return products.save(product);
     }
-
 
 
     public Product update(long id, ProductUpdateDTO dto) {
@@ -74,6 +74,7 @@ public class ProductService {
         return products.findById(id)
                 .orElseThrow(() -> new NotFoundException("Product with id " + id + " not found"));
     }
+
     public void deleteProduct(long productId) {
         if (!products.existsById(productId)) {
             throw new NotFoundException("Product with id " + productId + " not found");

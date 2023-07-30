@@ -9,8 +9,6 @@ import java.util.List;
 public interface Categories extends JpaRepository<Category, Long> {
 
 
-
-
     List<Category> findByParent_Id(long parentId);
 
 

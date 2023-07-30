@@ -3,11 +3,11 @@ package pro.sdacademy.zdjava137.group3.service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import pro.sdacademy.zdjava137.group3.dao.Categories;
 import pro.sdacademy.zdjava137.group3.entity.Category;
 import pro.sdacademy.zdjava137.group3.exceptions.NotFoundException;
 import pro.sdacademy.zdjava137.group3.model.CategoryAddDTO;
 import pro.sdacademy.zdjava137.group3.model.CategoryUpdateDTO;
-import pro.sdacademy.zdjava137.group3.dao.Categories;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -60,7 +60,6 @@ public class CategoryService {
         return categories.findById(id)
                 .orElseThrow(() -> new NotFoundException("Product with id " + id + " not found"));
     }
-
 
 
     public void deleteCategory(long categoryId) {

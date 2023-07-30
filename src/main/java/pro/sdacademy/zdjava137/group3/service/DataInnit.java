@@ -4,8 +4,8 @@ package pro.sdacademy.zdjava137.group3.service;
 import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
-import pro.sdacademy.zdjava137.group3.entity.Product;
 import pro.sdacademy.zdjava137.group3.dao.Products;
+import pro.sdacademy.zdjava137.group3.entity.Product;
 
 @AllArgsConstructor
 @Component
@@ -55,8 +55,6 @@ public class DataInnit {
         skinsuit.setPrice(2233);
         skinsuit.setQuantity(52);
         products.save(skinsuit);
-
-
 
 
     }

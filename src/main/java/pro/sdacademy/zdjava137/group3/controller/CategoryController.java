@@ -1,7 +1,6 @@
 package pro.sdacademy.zdjava137.group3.controller;
 
 
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
@@ -42,6 +41,7 @@ public class CategoryController {
     public Collection<Category> getCategories(@PageableDefault(size = 10, sort = "id") Pageable pageable) {
         return categoryService.getCategories(pageable);
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<Category> getCategoryById(@PathVariable long id) {
         Optional<Category> category = categoryService.getCategoryById(id);
@@ -56,6 +56,7 @@ public class CategoryController {
         Category createdCategory = categoryService.createCategory(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdCategory);
     }
+
     @PutMapping("/{id}")
     public ResponseEntity<Category> updateCategory(@PathVariable long id, @RequestBody CategoryUpdateDTO dto) {
         Category updatedCategory = categoryService.update(id, dto);
@@ -67,13 +68,10 @@ public class CategoryController {
         try {
             categoryService.deleteCategory(id);
             return ResponseEntity.status(HttpStatus.ACCEPTED).build();
-        }
-        catch (NotFoundException e) {
+        } catch (NotFoundException e) {
             return ResponseEntity.notFound().build();
         }
     }
-
-
 
 
 }

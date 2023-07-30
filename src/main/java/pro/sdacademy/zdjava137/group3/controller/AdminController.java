@@ -24,10 +24,12 @@ public class AdminController {
     public String adminUsers(Model model, @RequestParam(required = false, defaultValue = "20") int limit, @RequestParam(required = false, defaultValue = "1") int page) {
         return "admin/index";
     }
+
     @GetMapping("/admin/products")
     public String adminProducts(Model model, @RequestParam(required = false, defaultValue = "20") int limit, @RequestParam(required = false, defaultValue = "1") int page) {
         return "admin/index";
     }
+
     @GetMapping("/admin/products/{id}")
     public String adminProduct(@PathVariable long id, Model model) {
         return "admin/index";
@@ -37,6 +39,7 @@ public class AdminController {
     public String adminCategories(Model model, @RequestParam(required = false, defaultValue = "20") int limit, @RequestParam(required = false, defaultValue = "1") int page) {
         return "admin/index";
     }
+
     @GetMapping("/admin/categories/{id}")
     public String adminCategory(@PathVariable long id, Model model) {
         return "admin/index";
